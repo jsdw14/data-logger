@@ -2,12 +2,13 @@ datalogger.onLogFull(function () {
     basic.showIcon(IconNames.Sad)
 })
 input.onButtonPressed(Button.A, function () {
+    log_num += 1
+    basic.showNumber(log_num)
     basic.showIcon(IconNames.Yes)
     datalogger.log(
     datalogger.createCV("sound", input.soundLevel()),
     datalogger.createCV("light", input.lightLevel())
     )
-    basic.showIcon(IconNames.Giraffe)
 })
 input.onButtonPressed(Button.B, function () {
     if (logging) {
@@ -16,6 +17,7 @@ input.onButtonPressed(Button.B, function () {
         logging = true
     }
 })
+let log_num = 0
 let logging = false
 basic.showIcon(IconNames.Giraffe)
 datalogger.setColumnTitles(
@@ -23,15 +25,15 @@ datalogger.setColumnTitles(
 "light"
 )
 logging = false
-let icon = 0
+log_num = 0
 loops.everyInterval(500, function () {
     if (logging) {
         datalogger.log(
         datalogger.createCV("sound", input.soundLevel()),
         datalogger.createCV("light", input.lightLevel())
         )
-        icon += 1
-        if (icon % 2 == 0) {
+        log_num += 1
+        if (log_num % 2 == 0) {
             basic.showIcon(IconNames.SmallDiamond)
         } else {
             basic.showIcon(IconNames.Diamond)
