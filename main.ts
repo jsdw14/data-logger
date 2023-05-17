@@ -10,19 +10,21 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.B, function () {
     log_num += 1
-    if (weatherbit.soilMoisture() < 250) {
+    soil_level = weatherbit.soilMoisture()
+    if (soil_level < 250) {
         basic.showString("L")
-    } else if (weatherbit.soilMoisture() >= 250 && weatherbit.soilMoisture() < 450) {
+    } else if (soil_level >= 250 && soil_level < 450) {
         basic.showString("M")
-    } else if (weatherbit.soilMoisture() >= 450) {
+    } else if (soil_level >= 450) {
         basic.showString("H")
     }
     datalogger.log(
     datalogger.createCV("sound", input.soundLevel()),
     datalogger.createCV("temperature", weatherbit.temperature() / 100),
-    datalogger.createCV("soil moisture", weatherbit.soilMoisture())
+    datalogger.createCV("soil moisture", soil_level)
     )
 })
+let soil_level = 0
 let logging = false
 basic.showIcon(IconNames.Giraffe)
 weatherbit.startWeatherMonitoring()
