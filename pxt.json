@@ -5,7 +5,8 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "datalogger": "*"
+        "datalogger": "*",
+        "weatherbit": "github:sparkfun/pxt-weather-bit#v0.0.19"
     },
     "files": [
         "main.blocks",

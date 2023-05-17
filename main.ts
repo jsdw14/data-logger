@@ -4,11 +4,12 @@ datalogger.onLogFull(function () {
 input.onButtonPressed(Button.A, function () {
     log_num += 1
     basic.showNumber(log_num)
-    basic.showIcon(IconNames.Yes)
     datalogger.log(
     datalogger.createCV("sound", input.soundLevel()),
-    datalogger.createCV("light", input.lightLevel())
+    datalogger.createCV("temperature", input.lightLevel()),
+    datalogger.createCV("soil moisture", weatherbit.soilMoisture())
     )
+    basic.showIcon(IconNames.Yes)
 })
 input.onButtonPressed(Button.B, function () {
     if (logging) {
@@ -20,19 +21,22 @@ input.onButtonPressed(Button.B, function () {
 let log_num = 0
 let logging = false
 basic.showIcon(IconNames.Giraffe)
+weatherbit.startWeatherMonitoring()
 datalogger.setColumnTitles(
 "sound",
-"light"
+"temperature",
+"soil moisture"
 )
 logging = false
 log_num = 0
 loops.everyInterval(500, function () {
     if (logging) {
+        log_num += 1
         datalogger.log(
         datalogger.createCV("sound", input.soundLevel()),
-        datalogger.createCV("light", input.lightLevel())
+        datalogger.createCV("temperature", weatherbit.temperature()),
+        datalogger.createCV("soil moisture", weatherbit.soilMoisture())
         )
-        log_num += 1
         if (log_num % 2 == 0) {
             basic.showIcon(IconNames.SmallDiamond)
         } else {
