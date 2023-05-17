@@ -2,21 +2,21 @@ datalogger.onLogFull(function () {
     basic.showIcon(IconNames.Sad)
 })
 input.onButtonPressed(Button.A, function () {
-    log_num += 1
-    basic.showNumber(log_num)
-    datalogger.log(
-    datalogger.createCV("sound", input.soundLevel()),
-    datalogger.createCV("temperature", input.lightLevel()),
-    datalogger.createCV("soil moisture", weatherbit.soilMoisture())
-    )
-    basic.showIcon(IconNames.Yes)
-})
-input.onButtonPressed(Button.B, function () {
     if (logging) {
         logging = false
     } else {
         logging = true
     }
+})
+input.onButtonPressed(Button.B, function () {
+    log_num += 1
+    basic.showNumber(log_num)
+    datalogger.log(
+    datalogger.createCV("sound", input.soundLevel()),
+    datalogger.createCV("temperature", weatherbit.temperature()),
+    datalogger.createCV("soil moisture", -1)
+    )
+    basic.showIcon(IconNames.Yes)
 })
 let log_num = 0
 let logging = false
