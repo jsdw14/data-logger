@@ -12,22 +12,24 @@ input.onButtonPressed(Button.B, function () {
     log_num += 1
     soil_level = weatherbit.soilMoisture()
     if (soil_level < 100) {
-        basic.showNumber(1)
+        basic.showNumber(0)
     } else if (soil_level >= 100 && soil_level < 200) {
-        basic.showNumber(2)
+        basic.showNumber(1)
     } else if (soil_level >= 200 && soil_level < 300) {
-        basic.showNumber(3)
+        basic.showNumber(2)
     } else if (soil_level >= 300 && soil_level < 400) {
-        basic.showNumber(4)
+        basic.showNumber(3)
     } else if (soil_level >= 400 && soil_level < 500) {
-        basic.showNumber(5)
+        basic.showNumber(4)
     } else if (soil_level >= 500 && soil_level < 600) {
-        basic.showNumber(6)
+        basic.showNumber(5)
     } else if (soil_level >= 600 && soil_level < 700) {
-        basic.showNumber(7)
+        basic.showNumber(6)
     } else if (soil_level >= 700 && soil_level < 800) {
+        basic.showNumber(7)
+    } else if (soil_level >= 800 && soil_level < 900) {
         basic.showNumber(8)
-    } else if (soil_level >= 800) {
+    } else if (soil_level >= 900) {
         basic.showNumber(9)
     }
     datalogger.log(
