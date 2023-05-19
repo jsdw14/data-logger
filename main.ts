@@ -35,7 +35,8 @@ loops.everyInterval(500, function () {
         continuous_log += 1
         datalogger.log(
         datalogger.createCV("sound", input.soundLevel()),
-        datalogger.createCV("temperature", weatherbit.temperature() / 100)
+        datalogger.createCV("temperature", weatherbit.temperature() / 100),
+        datalogger.createCV("location", 0)
         )
         if (continuous_log % 2 == 0) {
             basic.showIcon(IconNames.SmallDiamond)
